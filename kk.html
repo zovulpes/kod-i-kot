@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Код и кот</title>
+    <link rel="icon" href="./icons/favicon.ico" />
+    <link rel="stylesheet" href="./kk.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo-container">
+        <img
+          src="./icons/android-chrome-192x192.png"
+          class="header__logo-image"
+          alt="Логотип"
+        />
+        <nav class="header__nav-left">
+          <a href="#main" class="header__nav-link">Начало</a>
+          <a href="#levels" class="header__nav-link">Уровни</a>
+        </nav>
+      </div>
+
+      <nav class="header__nav-right">
+        <a href="#" class="header__nav-link header__nav-link--exit">Выход</a>
+      </nav>
+    </header>
+
+    <main class="main" id="main">
+      <div class="main-page">
+        <div class="main-page__left">
+          <h1 class="main-page__title">Код и кот</h1>
+          <p class="main-page__description">
+            Интерактивный тренажер <br />
+            по процедурному <br />программированию
+          </p>
+          <div class="main-page__buttons">
+            <button class="main-page__button main-page__button--continue">
+              Продолжить...
+            </button>
+            <button class="main-page__button main-page__button--new">
+              Начать новое прохождение
+            </button>
+          </div>
+        </div>
+
+        <div class="main-page__right">
+          <img src="./icons/cat.png" alt="Кот" class="main-page__image" />
+        </div>
+      </div>
+      <div class="levels" id="levels">
+        <a href="level1.html" class="level 1">
+          <h1 class="levels__name">Название уровня</h1>
+          <h2 class="levels__counter">Уровень 1</h2>
+        </a>
+
+        <a href="level2.html" class="level 2">
+          <h1 class="levels__name">Название уровня</h1>
+          <h2 class="levels__counter">Уровень 2</h2>
+        </a>
+
+        <a href="level3.html" class="level 3">
+          <h1 class="levels__name">Название уровня</h1>
+          <h2 class="levels__counter">Уровень 3</h2>
+        </a>
+
+        <a href="level4.html" class="level 4">
+          <h1 class="levels__name">Название уровня</h1>
+          <h2 class="levels__counter">Уровень 4</h2>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

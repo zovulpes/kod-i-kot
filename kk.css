@@ -1,0 +1,197 @@
+/* шрифты */
+@font-face {
+  font-family: "Geometria";
+  src: url("./fonts/geometria_medium.otf") format("opentype");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "pixel";
+  src: url("./fonts/vcrosdmonorusbyd.ttf") format("opentype");
+  font-style: normal;
+}
+
+/* базовые стили */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #5d889d;
+}
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 70px;
+  background-color: #fefcef;
+  height: 60px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 1000;
+}
+
+.header__logo-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__logo-image {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header__nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__nav-right {
+  margin-left: auto;
+}
+
+.header__nav-link {
+  font-family: "Geometria", sans-serif;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.header__nav-link--exit {
+  color: rgba(0, 0, 0, 0.75);
+  margin-left: auto;
+}
+
+/* MAIN PAGE */
+.main-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  padding: 100px 70px;
+  gap: 50px;
+}
+
+.main-page__left {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1000px;
+  padding-left: 100px;
+}
+
+.main-page__right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 100px;
+}
+
+.main-page__title {
+  color: #fefcef;
+  font-size: 100px;
+  font-family: "pixel";
+}
+
+.main-page__description {
+  color: #fefcef;
+  font-family: "Geometria";
+  font-size: 24px;
+}
+
+.main-page__buttons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.main-page__button {
+  height: 40px;
+  border-radius: 12px;
+  font-family: "Geometria";
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  box-shadow: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.main-page__button:hover {
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+.main-page__button--continue {
+  width: 150px;
+  background-color: #fefcef;
+  color: rgba(0, 0, 0, 0.75);
+  box-shadow: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.main-page__button--continue:hover {
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+.main-page__button--new {
+  width: 260px;
+  background-color: #5d889d;
+  color: #fefcef;
+  border: 1px solid #fefcef;
+}
+
+.main-page__image {
+  height: 400px;
+  width: auto;
+}
+
+/* LEVELS*/
+
+.levels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  grid-template-areas:
+    "1 2"
+    "3 4";
+  padding: 50px;
+  justify-items: center;
+  align-items: center;
+}
+.level {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fefcef;
+  border-radius: 10px;
+  padding: 30px;
+  text-decoration: none;
+  height: 300px;
+  width: 600px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease;
+}
+
+.level:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.levels__name {
+  font-family: "pixel";
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.levels__counter {
+  font-family: "geometria";
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 16px;
+}
