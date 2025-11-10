@@ -195,3 +195,77 @@ body {
   color: rgba(0, 0, 0, 0.75);
   font-size: 16px;
 }
+
+/* LEVEL'S PAGE */
+
+.levels__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  flex-direction: column;
+  background-color: #fefcef;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: calc(100vw - 40px);
+  margin: 80px auto 0;
+}
+
+.levels__code-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  flex-direction: column;
+  background-color: #fefcef;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  width: calc(100vw - 40px);
+  margin: 20px auto 0;
+}
+
+.levels__buttons-and-cat {
+  display: flex;
+  height: 20px;
+  margin: 20px auto 0;
+  margin-left: 20px;
+  gap: 10px;
+}
+
+.levels__cat {
+  height: 200px;
+  width: auto;
+}
+
+.level__title {
+  font-family: "geometria";
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.level__description {
+  font-family: "geometria";
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.levels__code-input {
+  font-family: "geometria";
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.levels__button {
+  height: 40px;
+  border-radius: 12px;
+  font-family: "Geometria";
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.2s ease;
+  padding: 8px;
+}
+
+.levels__button:hover {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
