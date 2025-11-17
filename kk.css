@@ -196,76 +196,110 @@ body {
   font-size: 16px;
 }
 
+/* базовые стили */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #5d889d;
+}
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 70px;
+  background-color: #fefcef;
+  height: 60px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 1000;
+}
+
+.header__logo-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__logo-image {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header__nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__nav-right {
+  margin-left: auto;
+}
+
+.header__nav-link {
+  font-family: "Geometria", sans-serif;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.header__nav-link--exit {
+  color: rgba(0, 0, 0, 0.75);
+  margin-left: auto;
+}
+
 /* LEVEL'S PAGE */
 
-.levels__description {
-  display: flex;
-  justify-content: space-between;
-  align-items: left;
-  flex-direction: column;
-  background-color: #fefcef;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  width: calc(100vw - 40px);
-  margin: 80px auto 0;
+.level__content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  margin: 70px 10px 20px 10px;
+  color: rgba(0, 0, 0, 0.75);
+  font-family: "Geometria";
 }
 
-.levels__code-input {
+.level__title-and-description {
   display: flex;
-  justify-content: space-between;
-  align-items: left;
   flex-direction: column;
-  background-color: #fefcef;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  gap: 10px;
   padding: 20px;
-  width: calc(100vw - 40px);
-  margin: 20px auto 0;
+  background-color: #fefcef;
+  border-radius: 20px;
 }
 
-.levels__buttons-and-cat {
+.level__code-input {
   display: flex;
-  height: 20px;
-  margin: 20px auto 0;
-  margin-left: 20px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 10px;
+  background-color: #fefcef;
+  border-radius: 20px;
+}
+
+.level__buttons {
+  display: flex;
   gap: 10px;
 }
 
-.levels__cat {
-  height: 200px;
-  width: auto;
-}
-
-.level__title {
-  font-family: "geometria";
+.level__button {
+  background-color: #fefcef;
   color: rgba(0, 0, 0, 0.75);
-}
-
-.level__description {
-  font-family: "geometria";
-  color: rgba(0, 0, 0, 0.75);
-}
-
-.levels__code-input {
-  font-family: "geometria";
-  color: rgba(0, 0, 0, 0.75);
-}
-
-.levels__button {
-  height: 40px;
-  border-radius: 12px;
+  border-radius: 7px;
+  border: solid rgba(0, 0, 0, 0.75) 2px;
   font-family: "Geometria";
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.2s ease;
-  padding: 8px;
+  padding: 5px;
 }
 
-.levels__button:hover {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+.level__button:hover {
+  cursor: pointer;
 }
