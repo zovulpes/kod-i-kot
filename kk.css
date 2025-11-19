@@ -1,6 +1,6 @@
 /* шрифты */
 @font-face {
-  font-family: "Geometria";
+  font-family: "Geometria", sans-serif;
   src: url("./fonts/geometria_medium.otf") format("opentype");
   font-style: normal;
 }
@@ -104,7 +104,7 @@ body {
 
 .main-page__description {
   color: #fefcef;
-  font-family: "Geometria";
+  font-family: "Geometria", sans-serif;
   font-size: 24px;
 }
 
@@ -117,7 +117,7 @@ body {
 .main-page__button {
   height: 40px;
   border-radius: 12px;
-  font-family: "Geometria";
+  font-family: "Geometria", sans-serif;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -191,7 +191,7 @@ body {
 }
 
 .levels__counter {
-  font-family: "geometria";
+  font-family: "Geometria", sans-serif;
   color: rgba(0, 0, 0, 0.75);
   font-size: 16px;
 }
@@ -264,7 +264,7 @@ body {
   gap: 10px;
   margin: 70px 10px 20px 10px;
   color: rgba(0, 0, 0, 0.75);
-  font-family: "Geometria";
+  font-family: "Geometria", sans-serif;
 }
 
 .level__title-and-description {
@@ -296,7 +296,7 @@ body {
   color: rgba(0, 0, 0, 0.75);
   border-radius: 7px;
   border: solid rgba(0, 0, 0, 0.75) 2px;
-  font-family: "Geometria";
+  font-family: "Geometria", sans-serif;
   padding: 5px;
 }
 
