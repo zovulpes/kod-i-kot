@@ -7,7 +7,7 @@
     <link rel="icon" href="./icons/favicon.ico" />
     <link rel="stylesheet" href="./kk.css" />
   </head>
-  <body>
+  <body data-answer="print" data-next="./level4.html">
     <header class="header">
       <div class="header__logo-container">
         <img
@@ -281,18 +281,36 @@ c = a + 2</code></pre>
           </table>
         </div>
         <div class="level__code-input">
-          <p class="level__description">
-            Здесь будет код <br />
-            здесь будет код <br />
-            Здесь будет код <br />
-            здесь будет код <br />
-            Здесь будет код <br />
-            здесь будет код <br />
-          </p>
+          <p class="level__description">Введите ваш код:</p>
+
+          <textarea
+            id="code-editor"
+            class="code-area"
+            spellcheck="false"
+            placeholder="Пиши код здесь..."
+          ></textarea>
+
+          <div id="output-console" class="output-console">
+            Ожидание запуска...
+          </div>
+
           <div class="buttons">
-            <button id="prev-step" class="level__button">◀ Назад</button>
+            <a
+              href="./kk.html#levels"
+              id="prev-step"
+              class="level__button"
+              style="text-decoration: none; text-align: center"
+              >◀ Меню</a
+            >
+
             <button id="play-pause" class="level__button">▶ Запустить</button>
-            <button id="next-step" class="level__button">Вперёд ▶</button>
+
+            <a
+              id="next-step"
+              class="level__button hidden"
+              style="text-decoration: none; text-align: center"
+              >Вперёд ▶</a
+            >
           </div>
         </div>
       </div>

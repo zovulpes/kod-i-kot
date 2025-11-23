@@ -327,12 +327,12 @@ pre {
   font-family: "Courier New", Courier, monospace;
   font-size: 14px;
   line-height: 1.4;
-  color: #24292e;
+  color: rgba(0, 0, 0, 0.75);
 }
 
 /* Стили для инлайн-кода */
 code {
-  background-color: rgba(175, 184, 193, 0.2);
+  background-color: #f8f9fa;
   padding: 2px 6px;
   border-radius: 3px;
   font-family: "Courier New", Courier, monospace;
@@ -345,13 +345,19 @@ code {
   width: auto;
   position: fixed !important;
   bottom: 20px !important;
-  right: 20px !important;
-  z-index: 1000;
+  z-index: 2000; /* Поднимаем слой максимально высоко, чтобы ничего не перекрывало */
+  cursor: pointer; /* Появляется рука при наведении */
+  transition: transform 0.1s ease; /* Плавная анимация */
 
   left: auto !important;
   top: auto !important;
   margin: 0 !important;
   transform: none !important;
+}
+
+/* Анимация при нажатии: кот чуть уменьшается */
+.level__cat:active {
+  transform: scale(0.95) !important;
 }
 
 /* Стили для таблицы */
@@ -389,4 +395,58 @@ td {
 /* Чередование строк для лучшей читаемости */
 tr:nth-child(even) td {
   background-color: #f8f9fa;
+}
+
+/* Поле ввода кода */
+.code-area {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  width: 100%;
+  height: 100%;
+  background-color: #f8f9fa;
+  color: rgba(0, 0, 0, 0.75);
+  font-family: "Courier New", Courier, monospace;
+  padding: 15px;
+  resize: none;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.code-area:focus {
+  border-color: #5d889d;
+}
+
+/* Консоль вывода результата */
+.output-console {
+  background-color: #f8f9fa;
+  border-left: 5px solid #e9ecef;
+  padding: 10px;
+  font-family: "Courier New", Courier, monospace;
+  color: rgba(0, 0, 0, 0.75);
+  margin-bottom: 15px;
+  min-height: 40px;
+  border-radius: 6px;
+}
+
+/* Стили для результата успеха/ошибки */
+.output-console.success {
+  border-left-color: #28a745;
+  background-color: #f8f9fa;
+  color: #155724;
+}
+
+.output-console.error {
+  border-left-color: #dc3545;
+  background-color: #f8f9fa;
+  color: #721c24;
+}
+
+/* Класс чтобы прятать кнопку "Вперед" */
+.hidden {
+  display: none !important;
 }
