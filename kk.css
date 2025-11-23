@@ -36,6 +36,7 @@ body {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   z-index: 1000;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
 }
 
 .header__logo-container {
@@ -262,7 +263,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 10px;
-  margin: 70px 10px 20px 10px;
+  margin: 20px 10px 20px 10px;
   color: rgba(0, 0, 0, 0.75);
   font-family: "Geometria", sans-serif;
 }
@@ -302,4 +303,90 @@ body {
 
 .level__button:hover {
   cursor: pointer;
+}
+
+.level__theory {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 100px 20px 100px;
+  background-color: #fefcef;
+  border-radius: 20px;
+  margin: 80px 10px 20px 10px;
+  font-family: "Geometria", sans-serif;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #24292e;
+}
+
+/* Стили для инлайн-кода */
+code {
+  background-color: rgba(175, 184, 193, 0.2);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9em;
+  color: #d63384;
+}
+
+.level__cat {
+  height: 200px;
+  width: auto;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 1000;
+
+  left: auto !important;
+  top: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* Стили для таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: "Geometria", sans-serif;
+  border: 2px solid #5d889d;
+  border-radius: 15px;
+}
+
+th,
+td {
+  border: 2px solid #5d889d;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+/* Шапка таблицы */
+th {
+  background-color: #5d889d;
+  color: #fefcef;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Ячейки таблицы */
+td {
+  text-align: center;
+  background-color: #fefcef;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* Чередование строк для лучшей читаемости */
+tr:nth-child(even) td {
+  background-color: #f8f9fa;
 }
