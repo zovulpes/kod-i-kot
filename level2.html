@@ -7,7 +7,17 @@
     <link rel="icon" href="./icons/favicon.ico" />
     <link rel="stylesheet" href="./kk.css" />
   </head>
-  <body data-answer="input" data-next="./level3.html">
+  <body
+    data-tests='[
+    {"input": "Настя", "expected": "Привет, Настя\n"},
+    {"input": "Арина", "expected": "Привет, Арина\n"},
+    {"input": "Python", "expected": "Привет, Python\n"},
+    {"input": "друг", "expected": "Привет, друг\n"},
+    {"input": "МИР", "expected": "Привет, МИР\n"},
+    {"input": "нечто из царства тьмы!", "expected": "Привет, нечто из царства тьмы!\n"}
+]'
+    data-next="./level3.html"
+  >
     <header class="header">
       <img
         src="./icons/android-chrome-192x192.png"
@@ -15,8 +25,8 @@
         alt="Логотип"
       />
 
-      <a href="#main" class="header__nav-link">Начало</a>
-      <a href="#levels" class="header__nav-link">Уровни</a>
+      <a href="./kk.html#main" class="header__nav-link">Начало</a>
+      <a href="./kk.html#levels" class="header__nav-link">Уровни</a>
     </header>
     <main>
       <div class="level__theory" class="level__content">
@@ -113,13 +123,13 @@ print('Привет,', input())  # ввод текста и вывод текс�
             </tr>
             <tr>
               <td>1</td>
-              <td>Тимур</td>
-              <td>Привет, Тимур</td>
+              <td>Настя</td>
+              <td>Привет, Настя</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Гвидо</td>
-              <td>Привет, Гвидо</td>
+              <td>Арина</td>
+              <td>Привет, Арина</td>
             </tr>
             <tr>
               <td>3</td>
@@ -150,12 +160,12 @@ print('Привет,', input())  # ввод текста и вывод текс�
               <th>Sample Output</th>
             </tr>
             <tr>
-              <td>Тимур</td>
-              <td>Привет, Тимур</td>
+              <td>Настя</td>
+              <td>Привет, Настя</td>
             </tr>
             <tr>
-              <td>Гвидо</td>
-              <td>Привет, Гвидо</td>
+              <td>Арина</td>
+              <td>Привет, Арина</td>
             </tr>
           </table>
         </div>
@@ -195,5 +205,8 @@ print('Привет,', input())  # ввод текста и вывод текс�
       </div>
       <img src="./icons/cat.png" class="level__cat" alt="Кот маскот" />
     </main>
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
   </body>
 </html>

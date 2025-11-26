@@ -417,8 +417,11 @@ tr:nth-child(even) td {
   font-family: "Courier New", Courier, monospace;
   color: rgba(0, 0, 0, 0.75);
   margin-bottom: 15px;
-  min-height: 40px;
+  max-height: 70vh;
+  overflow-y: auto;
   border-radius: 6px;
+  white-space: pre-wrap;
+  padding-bottom: 20px;
 }
 
 /* Стили для результата успеха/ошибки */

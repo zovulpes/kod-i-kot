@@ -7,7 +7,16 @@
     <link rel="icon" href="./icons/favicon.ico" />
     <link rel="stylesheet" href="./kk.css" />
   </head>
-  <body>
+  <body
+    data-tests='[
+    {"input": "qwerty\nqwerty", "expected": "Пароль принят\n"},
+    {"input": "qwerty\nQwerty", "expected": "Пароль не принят\n"},
+    {"input": "PythonROCKS\nPythonROCKS", "expected": "Пароль принят\n"},
+    {"input": "123456789\n12345678", "expected": "Пароль не принят\n"},
+    {"input": "Python2\nPython3", "expected": "Пароль не принят\n"}
+]'
+    data-next="finished"
+  >
     <header class="header">
       <img
         src="./icons/android-chrome-192x192.png"
@@ -15,8 +24,8 @@
         alt="Логотип"
       />
 
-      <a href="#main" class="header__nav-link">Начало</a>
-      <a href="#levels" class="header__nav-link">Уровни</a>
+      <a href="./kk.html#main" class="header__nav-link">Начало</a>
+      <a href="./kk.html#levels" class="header__nav-link">Уровни</a>
     </header>
     <main>
       <div class="level__theory" class="level__content">
@@ -351,5 +360,8 @@ else:
       </div>
       <img src="./icons/cat.png" class="level__cat" alt="Кот маскот" />
     </main>
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
   </body>
 </html>

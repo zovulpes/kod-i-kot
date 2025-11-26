@@ -7,7 +7,16 @@
     <link rel="icon" href="./icons/favicon.ico" />
     <link rel="stylesheet" href="./kk.css" />
   </head>
-  <body data-answer="print" data-next="./level4.html">
+  <body
+    data-tests='[
+    {"input": "8", "expected": "8\n9\n10\n"},
+    {"input": "-341", "expected": "-341\n-340\n-339\n"},
+    {"input": "-1", "expected": "-1\n0\n1\n"},
+    {"input": "999", "expected": "999\n1000\n1001\n"},
+    {"input": "3338", "expected": "3338\n3339\n3340\n"}
+]'
+    data-next="./level4.html"
+  >
     <header class="header">
       <img
         src="./icons/android-chrome-192x192.png"
@@ -15,8 +24,8 @@
         alt="Логотип"
       />
 
-      <a href="#main" class="header__nav-link">Начало</a>
-      <a href="#levels" class="header__nav-link">Уровни</a>
+      <a href="./kk.html#main" class="header__nav-link">Начало</a>
+      <a href="./kk.html#levels" class="header__nav-link">Уровни</a>
     </header>
     <main>
       <div class="level__theory" class="level__content">
@@ -310,5 +319,8 @@ c = a + 2</code></pre>
       </div>
       <img src="./icons/cat.png" class="level__cat" alt="Кот маскот" />
     </main>
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
   </body>
 </html>
