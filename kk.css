@@ -37,12 +37,7 @@ body {
   border-bottom-right-radius: 20px;
   z-index: 1000;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
-}
-
-.header__logo-container {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .header__logo-image {
@@ -51,25 +46,10 @@ body {
   object-fit: contain;
 }
 
-.header__nav-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header__nav-right {
-  margin-left: auto;
-}
-
 .header__nav-link {
   font-family: "Geometria", sans-serif;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.75);
-}
-
-.header__nav-link--exit {
-  color: rgba(0, 0, 0, 0.75);
-  margin-left: auto;
 }
 
 /* MAIN PAGE */
@@ -343,19 +323,27 @@ code {
 .level__cat {
   height: 200px;
   width: auto;
+
+  /* Позиционирование */
   position: fixed !important;
   bottom: 20px !important;
-  z-index: 2000; /* Поднимаем слой максимально высоко, чтобы ничего не перекрывало */
-  cursor: pointer; /* Появляется рука при наведении */
-  transition: transform 0.1s ease; /* Плавная анимация */
+  right: 20px !important; /* <--- ДОБАВИЛИ ЭТУ СТРОЧКУ */
 
+  /* Сброс левого позиционирования, чтобы не было конфликтов */
   left: auto !important;
   top: auto !important;
   margin: 0 !important;
-  transform: none !important;
+
+  /* Слой и курсор */
+  z-index: 2000;
+  cursor: pointer;
+
+  /* Анимация */
+  transition: transform 0.1s ease;
+  /* Убрали transform: none, чтобы он не мешал анимации, если она нужна */
 }
 
-/* Анимация при нажатии: кот чуть уменьшается */
+/* Анимация при нажатии */
 .level__cat:active {
   transform: scale(0.95) !important;
 }
