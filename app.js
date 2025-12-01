@@ -1,4 +1,4 @@
-// --- 1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И ФУНКЦИИ SKULPT (Могут быть вне DOMContentLoaded) ---
+// --- 1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И ФУНКЦИИ SKULPT ---
 
 // Переменные для работы с вводом/выводом Skulpt
 let programOutput = "";
@@ -41,24 +41,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const continueBtn = document.querySelector(".main-page__button--continue");
   const newGameBtn = document.querySelector(".main-page__button--new"); // 0. ЛОГИКА ПРОВЕРКИ ПРОГРЕССА В LOCALSTORAGE
 
-  const savedLevel = localStorage.getItem("python_level"); // Если мы на главной странице и кнопки меню существуют
+  // 0. ЛОГИКА ПРОВЕРКИ ПРОГРЕССА В LOCALSTORAGE
+  const savedLevel = localStorage.getItem("python_level");
+
+  // 1. ЛОГИКА ОТОБРАЖЕНИЯ КНОПКИ "ПРОДОЛЖИТЬ"
   if (continueBtn && newGameBtn) {
     if (savedLevel) {
       // Если прогресс найден:
       continueBtn.classList.remove("hidden");
-      continueBtn.href = savedLevel; // Логика "Начать новое прохождение"
-
-      newGameBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        localStorage.removeItem("python_level");
-        alert("Прогресс сброшен. Начинаем с Level 1.");
-        window.location.href = "./level1.html";
-      });
+      continueBtn.href = savedLevel;
     } else {
       // Если прогресс НЕ найден:
-      continueBtn.classList.add("hidden"); // Кнопка "Начать новое прохождение" ведет на level1.html по умолчанию
+      continueBtn.classList.add("hidden");
     }
   }
+
+  if (newGameBtn) {
+    // Проверяем, что кнопка найдена
+    newGameBtn.addEventListener("click", function (e) {
+      e.preventDefault(); // Останавливаем стандартное действие ссылки (<a>)
+
+      localStorage.removeItem("python_level");
+      window.location.href = "./level1.html";
+    });
+  }
+
   // 2.2. ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ЗАПУСКА ОДНОГО ТЕСТА
   function runTest(testInput, expectedOutput) {
     programOutput = ""; // Очищаем вывод перед новым тестом
@@ -188,17 +195,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 2.4. ЛОГИКА КОТА
   const cat = document.querySelector(".level__cat");
+
   if (cat) {
-    const tips = [
-      "Не забудь проверить кавычки и регистр!",
-      "Проверь, как твоя программа обрабатывает ввод.",
-      "Мяу! Проверяй отступы, Python чувствителен к ним.",
-      "Внимательно прочитай задание ещё раз.",
-      "Возможно, где-то стоит лишний пробел",
-    ];
-    cat.addEventListener("click", function () {
-      const randomTip = tips[Math.floor(Math.random() * tips.length)];
-      alert("🐈 Кот подсказывает:\n" + randomTip);
-    });
+    // 1. Получаем строку подсказок из атрибута data-tips
+    const tipsString = document.body.getAttribute("data-tips");
+
+    // Проверяем, есть ли подсказки
+    if (tipsString) {
+      // 2. Разбиваем строку на массив, используя "|" как разделитель
+      const tips = tipsString.split("|");
+
+      cat.addEventListener("click", function () {
+        // Выбираем случайную подсказку из объединенного массива
+        const randomIndex = Math.floor(Math.random() * tips.length);
+        const randomTip = tips[randomIndex];
+
+        alert("🐈 Кот подсказывает:\n" + randomTip);
+      });
+    } else {
+      // Если data-tips не задан, котик будет молчать или давать стандартную подсказку
+      cat.addEventListener("click", function () {
+        alert(
+          "🐈 Кот подсказывает:\nПохоже, для этого уровня нет специальных подсказок. Проверь общие правила!"
+        );
+      });
+    }
   }
 }); // <-- Конец DOMContentLoaded

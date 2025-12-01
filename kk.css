@@ -104,6 +104,9 @@ body {
   cursor: pointer;
   box-shadow: none;
   transition: box-shadow 0.2s ease;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .main-page__button:hover {
@@ -116,6 +119,7 @@ body {
   color: rgba(0, 0, 0, 0.75);
   box-shadow: none;
   transition: box-shadow 0.2s ease;
+  text-align: center;
 }
 
 .main-page__button--continue:hover {
