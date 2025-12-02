@@ -222,3 +222,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 }); // <-- Конец DOMContentLoaded
+
+  // ДЛЯ ТЕСТИРОВАНИЯ
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = {
+      // экспортируем то, что будем тестировать
+      captureOutput,
+      builtinRead,
+      inputFunction,
+      runTest,
+    };
+  }
