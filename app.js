@@ -4,6 +4,11 @@
 let programOutput = "";
 let inputQueue = [];
 
+// Переменные для контроля выполнения
+let executionStartTime = 0;
+const MAX_EXECUTION_TIME_MS = 2000; // Максимальное время выполнения (2 секунды)
+const MAX_EXECUTION_STEPS = 100000; // Максимальное количество операций Skulpt
+
 // Функция для захвата вывода команды print()
 function captureOutput(text) {
   programOutput += text;
@@ -14,8 +19,9 @@ function builtinRead(x) {
   if (
     Sk.builtinFiles === undefined ||
     Sk.builtinFiles["files"][x] === undefined
-  )
-    throw "\nFile not found: '" + x + "'";
+  ) {
+    throw "\nФайл не найден: '" + x + "'";
+  }
   return Sk.builtinFiles["files"][x];
 }
 
@@ -32,14 +38,34 @@ function inputFunction() {
 
 // --- 2. ОСНОВНАЯ ЛОГИКА (Всё внутри обертки DOMContentLoaded для избежания ошибок Scope) ---
 document.addEventListener("DOMContentLoaded", function () {
+  // --- 2.0. ГЛОБАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ SKULPT (ОДИН РАЗ) ---
+  Sk.configure({
+    output: captureOutput,
+    read: builtinRead,
+    inputfun: inputFunction,
+    inputfunTakesPrompts: false,
+
+    // Ограничения для защиты от зависаний
+    execLimit: MAX_EXECUTION_STEPS,
+    yieldLimit: 1000,
+
+    // Таймаут по реальному времени
+    yield: () => {
+      if (performance.now() - executionStartTime > MAX_EXECUTION_TIME_MS) {
+        throw new Error("⏱ Превышено допустимое время выполнения программы.");
+      }
+    },
+  });
+
   // 2.1. ИНИЦИАЛИЗАЦИЯ ВСЕХ КОНСТАНТ (ОДИН РАЗ)
   const runButton = document.getElementById("play-pause");
   const codeEditor = document.getElementById("code-editor");
   const outputConsole = document.getElementById("output-console");
   const nextBtn = document.getElementById("next-step");
+
   // Объявляем константы для кнопок меню по классам
   const continueBtn = document.querySelector(".main-page__button--continue");
-  const newGameBtn = document.querySelector(".main-page__button--new"); // 0. ЛОГИКА ПРОВЕРКИ ПРОГРЕССА В LOCALSTORAGE
+  const newGameBtn = document.querySelector(".main-page__button--new");
 
   // 0. ЛОГИКА ПРОВЕРКИ ПРОГРЕССА В LOCALSTORAGE
   const savedLevel = localStorage.getItem("python_level");
@@ -71,16 +97,11 @@ document.addEventListener("DOMContentLoaded", function () {
     programOutput = ""; // Очищаем вывод перед новым тестом
     inputQueue = testInput.split("\n"); // Загружаем ввод для текущего теста
 
-    // Получаем код пользователя здесь, чтобы он был свежим
+    // Получаем код пользователя
     const userCode = codeEditor.value;
 
-    // Конфигурация Skulpt
-    Sk.configure({
-      output: captureOutput,
-      read: builtinRead,
-      inputfun: inputFunction,
-      inputfunTakesPrompts: false,
-    });
+    // Запускаем таймер выполнения
+    executionStartTime = performance.now();
 
     // Запуск Skulpt
     const myPromise = Sk.misceval.asyncToPromise(function () {
@@ -91,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return myPromise.then(
       // Успешное выполнение кода Python
       function () {
-        // Сравнение фактического вывода с ожидаемым (игнорируем лишние пробелы)
         if (programOutput.trim() === expectedOutput.trim()) {
           return {
             success: true,
@@ -112,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
           };
         }
       },
-      // Ошибка Python
+      // Ошибка Python или ограничений
       function (err) {
         return {
           success: false,
@@ -129,7 +149,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const testsJson = document.body.getAttribute("data-tests");
     const nextLevelUrl = document.body.getAttribute("data-next");
 
-    // Проверка JSON: если данные неверны, выдаст ошибку
     try {
       var tests = JSON.parse(testsJson);
     } catch (e) {
@@ -157,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           if (!result.success) {
             allTestsPassed = false;
-            throw result.message; // Передаем ошибку дальше в catch
+            throw result.message;
           }
         });
       });
@@ -166,28 +185,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Обработка финального результата
     chain
       .then(() => {
-        // УСПЕХ
         outputConsole.textContent += "\n\n✅ Все тесты пройдены успешно!";
         outputConsole.classList.add("success");
 
         if (nextLevelUrl === "finished") {
-          // *** Завершение игры ***
           alert("🏆 ПОЗДРАВЛЯЮ! Ты прошел все уровни и освоил основы Python.");
-
-          // СТИРАЕМ ПРОГРЕСС ПОСЛЕ ПОЛНОГО ЗАВЕРШЕНИЯ
           localStorage.removeItem("python_level");
         } else if (nextLevelUrl) {
-          // Логика перехода на следующий уровень
-
-          // СОХРАНЯЕМ СЛЕДУЮЩИЙ УРОВЕНЬ В LOCALSTORAGE
           localStorage.setItem("python_level", nextLevelUrl);
-
           nextBtn.classList.remove("hidden");
           nextBtn.href = nextLevelUrl;
         }
       })
       .catch((errorMessage) => {
-        // ПРОВАЛ
         outputConsole.textContent = `\n${errorMessage}`;
         outputConsole.classList.add("error");
       });
@@ -197,23 +207,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const cat = document.querySelector(".level__cat");
 
   if (cat) {
-    // 1. Получаем строку подсказок из атрибута data-tips
     const tipsString = document.body.getAttribute("data-tips");
 
-    // Проверяем, есть ли подсказки
     if (tipsString) {
-      // 2. Разбиваем строку на массив, используя "|" как разделитель
       const tips = tipsString.split("|");
 
       cat.addEventListener("click", function () {
-        // Выбираем случайную подсказку из объединенного массива
         const randomIndex = Math.floor(Math.random() * tips.length);
         const randomTip = tips[randomIndex];
-
         alert("🐈 Кот подсказывает:\n" + randomTip);
       });
     } else {
-      // Если data-tips не задан, котик будет молчать или давать стандартную подсказку
       cat.addEventListener("click", function () {
         alert(
           "🐈 Кот подсказывает:\nПохоже, для этого уровня нет специальных подсказок. Проверь общие правила!"
@@ -223,13 +227,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 }); // <-- Конец DOMContentLoaded
 
-  // ДЛЯ ТЕСТИРОВАНИЯ
-  if (typeof module !== "undefined" && module.exports) {
-    module.exports = {
-      // экспортируем то, что будем тестировать
-      captureOutput,
-      builtinRead,
-      inputFunction,
-      runTest,
-    };
-  }
+// ДЛЯ ТЕСТИРОВАНИЯ
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    captureOutput,
+    builtinRead,
+    inputFunction,
+  };
+}

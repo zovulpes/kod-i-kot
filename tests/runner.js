@@ -7,9 +7,9 @@ function captureOutput(text) {
 
 function builtinRead(x) {
   if (typeof Sk === "undefined" || !Sk.builtinFiles)
-    throw new Error("Skulpt builtin files not available");
+    throw new Error("Встроенные файлы Skulpt недоступны");
   if (!Sk.builtinFiles["files"][x])
-    throw new Error("\nFile not found: '" + x + "'");
+    throw new Error("\nФайл не найден: '" + x + "'");
   return Sk.builtinFiles["files"][x];
 }
 
@@ -35,12 +35,11 @@ function getProgramOutput() {
   return programOutput;
 }
 
-// вернуть очередь (для тестов, если нужно)
+// вернуть очередь
 function getInputQueue() {
   return _inputQueue;
 }
 
-// ключевая функция runTest остаётся без изменений
 function runTest(testInput, expectedOutput, options = {}) {
   programOutput = "";
   setInputQueueFromString(testInput);
